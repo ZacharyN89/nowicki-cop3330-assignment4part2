@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="731.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox prefHeight="375.0" prefWidth="170.0" />
+      <VBox layoutX="170.0" prefHeight="375.0" prefWidth="170.0" />
+      <Button layoutX="346.0" layoutY="188.0" mnemonicParsing="false" text="Add List" />
+      <Button layoutX="519.0" layoutY="39.0" mnemonicParsing="false" text="Remove List" />
+      <Button layoutX="352.0" layoutY="89.0" mnemonicParsing="false" text="Display List Items" />
+      <Button layoutX="506.0" layoutY="188.0" mnemonicParsing="false" text="Edit List Name" />
+      <Button layoutX="24.0" layoutY="374.0" mnemonicParsing="false" text="Modify Selected List" textAlignment="CENTER" />
+      <Button layoutX="191.0" layoutY="374.0" mnemonicParsing="false" text="Modify Selected Item" textAlignment="CENTER" />
+      <Button layoutX="344.0" layoutY="64.0" mnemonicParsing="false" text="Mark List as Complete" />
+      <TextArea layoutX="346.0" layoutY="245.0" prefHeight="100.0" prefWidth="255.0" />
+      <Button layoutX="348.0" layoutY="374.0" mnemonicParsing="false" text="Import All Lists from File Path" />
+      <Button layoutX="436.0" layoutY="350.0" mnemonicParsing="false" text="Export List to File Path" />
+      <Button layoutX="348.0" layoutY="213.0" mnemonicParsing="false" text="Add Item" />
+      <Button layoutX="518.0" layoutY="14.0" mnemonicParsing="false" text="Remove Item" />
+      <Button layoutX="503.0" layoutY="213.0" mnemonicParsing="false" text="Edit Item Name" />
+      <Button layoutX="414.0" layoutY="213.0" mnemonicParsing="false" text="Edit Item Date" />
+      <Button layoutX="348.0" layoutY="39.0" mnemonicParsing="false" text="Display Incomplete List Items" />
+      <Button layoutX="352.0" layoutY="14.0" mnemonicParsing="false" text="Display Complete List Items" />
+      <Button layoutX="522.0" layoutY="374.0" mnemonicParsing="false" text="Import Lists from File Path" />
+      <TextField layoutX="346.0" layoutY="163.0" prefHeight="25.0" prefWidth="255.0" />
+      <Button layoutX="347.0" layoutY="350.0" mnemonicParsing="false" text="Set File Path" />
+   </children>
+</AnchorPane>

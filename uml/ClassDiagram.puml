@@ -1,0 +1,48 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Application{
+    main()
+    start()
+}
+
+class FXController{
+
+}
+
+class ListAggregate{
+    +addList()
+    +removeList()
+    +displayListItems()
+    +displayCompleteItems()
+    +exportListItems()
+    +exportAggregateItems()
+    +loadList()
+    +loadAggregateLists()
+}
+
+class TodoList{
+    +editListName()
+    +addItemToList()
+    +removeItemFromList()
+
+}
+
+class Item{
+    -String description
+    //Use a list to store the year, month, and day separately.
+    -ArrayList<String> Date
+
+    +editItemName()
+    +editItemDate()
+    +markItemComplete()
+}
+
+
+
+
+javafx.Application <|-- Application
+Application o-- FXController
+TodoList *-- Item
+ListAggregate o-- TodoList
+@enduml
