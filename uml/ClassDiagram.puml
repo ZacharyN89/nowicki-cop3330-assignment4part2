@@ -26,6 +26,8 @@ class FXController{
 }
 
 class ListAggregate{
+    -ArrayList<TodoList> allLists
+
     +addList()
     +removeList()
     +getLists()
@@ -38,19 +40,25 @@ class ListAggregate{
 }
 
 class TodoList{
-    +editListName()
-    +addItemToList()
-    +removeItemFromList()
+    -String name
+    -ArrayList<TodoItem> allItems
+
+    +setName()
+    +addItem()
+    +removeItem()
+    +listAsString()
+    +completeItemsAsString()
 }
 
 class Item{
-    -String description
-    //Use a list to store the year, month, and day separately.
-    -ArrayList<String> Date
+    -String name
+    -Boolean isComplete
 
-    +editItemName()
-    +editItemDate()
-    +markItemComplete()
+    +setName()
+    +setDate()
+    +setCompleteFlag()
+    +get()
+    +getIfComplete()
 }
 
 

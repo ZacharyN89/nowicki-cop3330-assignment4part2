@@ -13,51 +13,31 @@ public class ListAggregate {
         //Find the TodoList 'name' and remove it by looping through allLists.
     }
 
-    public ArrayList<String> getLists(String name){
-        ArrayList<String> result = new ArrayList<>();
-        //Add each TodoList in allLists to return array as a String.
+    public String getLists(String name){
+        //Call listAsString for every TodoList in allLists with a newLine at the end of each and add to a return string.
         //Return the String list.
-        return result;
+        return "";
     }
 
-    public ArrayList<String> getListItems(String name){
-        ArrayList<String> result = new ArrayList<>();
+    public String getListItems(String name){
         //Find the TodoList 'name' by looping through allLists.
-        //Make a String list of it's items.
+        //Make a String list of it's items by calling listAsString and adding to a return String.
         //Return the String list.
-        return result;
+        return "";
     }
 
-    public ArrayList<String> getCompleteItems(String name){
-        ArrayList<String> result = new ArrayList<>();
-        //Add all TodoLists with a complete flag to a return list. Loop through allLists to check.
+    public String getCompleteItems(String name){
+        //Call completeItemsAsString for every TodoList in allLists with a newLine at the end of each and add to a return string.
         //Return the String list.
-        return result;
+        return "";
     }
 
     public void exportList(String name){
-        //Add the TodoList 'name' to a text file
-
-        //BufferedWriter object.
-        //Loop through allLists until 'name' is found.
-        //Add string to text file with a space.
-            //Loop through ArrayList.
-            //Add string to text file with a space.
-        //Add a new line.
+        //Add listAsString to a text file for the TodoList 'name' in allLists.
     }
 
     public void exportAllLists(){
-        //Transfer everything in the ListAggregate to a text file.
-
-        //Loop through allLists and add each of those lists spaced.
-        //Each line would contain one list.
-
-        //BufferedWriter object.
-        //Loop through allLists.
-        //Add string to text file with a space.
-            //Loop through ArrayList.
-            //Add string to text file with a space.
-        //Add a new line.
+        //Add listAsString to a text file for every TodoList in allLists.
     }
 
     public void loadList(String name){
