@@ -28,19 +28,19 @@ class FXController{
 class ListAggregate{
     +addList()
     +removeList()
-    +displayListItems()
-    +displayCompleteItems()
-    +exportListItems()
-    +exportAggregateItems()
+    +getLists()
+    +getListItems()
+    +getCompleteItems()
+    +exportList()
+    +exportAllLists()
     +loadList()
-    +loadAggregateLists()
+    +loadAllLists()
 }
 
 class TodoList{
     +editListName()
     +addItemToList()
     +removeItemFromList()
-
 }
 
 class Item{
