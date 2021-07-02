@@ -1,13 +1,28 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-class Application{
+class ListController{
     main()
     start()
 }
 
 class FXController{
-
+    +selectListButton()
+    +selectItemButton()
+    +displayIncompleteListButton()
+    +displayCompleteItemsButton()
+    +markListCompleteButton()
+    +DisplayListItemsButton()
+    +removeListButton()
+    +exportListButton()
+    +removeItemButton()
+    +addListButton()
+    +editListNameButton()
+    +importSpecifiedListsButton()
+    +addItemButton()
+    +editItemNameButton()
+    +editItemDateButton()
+    +exportAllListsButton()
 }
 
 class ListAggregate{
@@ -41,8 +56,9 @@ class Item{
 
 
 
-javafx.Application <|-- Application
-Application o-- FXController
+javafx.Application <|-- ListController
+ListController o-- ListAggregate
+ListController o- FXController
 TodoList *-- Item
-ListAggregate o-- TodoList
+ListAggregate o- TodoList
 @enduml
