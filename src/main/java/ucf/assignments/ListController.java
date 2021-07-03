@@ -1,3 +1,8 @@
+/*
+ *  UCF COP3330 Summer 2021 Assignment 4 Solution
+ *  Copyright 2021 Zachary Nowicki
+ */
+
 package ucf.assignments;
 
 import javafx.application.Application;
@@ -9,7 +14,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class ListController extends Application {
-
     public static void main(String[] args) {
         launch(args);
     }
