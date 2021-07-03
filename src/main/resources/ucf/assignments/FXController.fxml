@@ -28,7 +28,7 @@
          <children>
             <Button mnemonicParsing="false" onAction="#displayIncompleteListButton" prefHeight="25.0" prefWidth="175.0" text="Display Incomplete List Items" />
             <Button mnemonicParsing="false" onAction="#displayCompleteItemsButton" prefHeight="25.0" prefWidth="175.0" text="Display Complete List Items" />
-            <Button mnemonicParsing="false" onAction="#markListCompleteButton" prefHeight="25.0" prefWidth="175.0" text="Mark List as Complete" />
+            <Button mnemonicParsing="false" onAction="#markItemCompleteButton" prefHeight="25.0" prefWidth="175.0" text="Mark Item as Complete" />
             <Button mnemonicParsing="false" onAction="#DisplayListItemsButton" prefHeight="25.0" prefWidth="175.0" text="Display List Items" />
             <Button mnemonicParsing="false" onAction="#removeListButton" prefHeight="25.0" prefWidth="175.0" text="Remove List" />
             <Button mnemonicParsing="false" onAction="#exportListButton" prefHeight="25.0" prefWidth="175.0" text="Export List" />

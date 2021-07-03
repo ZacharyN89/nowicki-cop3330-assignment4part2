@@ -28,11 +28,6 @@ public class FXController {
         //Show all complete lists from list aggregate.
     }
 
-    public void markListCompleteButton(ActionEvent actionEvent) {
-        //Make sure a list has been selected.
-        //Change list flag to marked.
-    }
-
     public void DisplayListItemsButton(ActionEvent actionEvent) {
         //Make sure a list has been selected.
         //Populate item area with items from the list.
@@ -94,5 +89,10 @@ public class FXController {
 
     public void exportAllListsButton(ActionEvent actionEvent) {
         //Export all lists from ListAggregate to JSON file.
+    }
+
+    public void markItemCompleteButton(ActionEvent actionEvent) {
+        //Make sure a list has been selected.
+        //Change list flag to marked.
     }
 }
