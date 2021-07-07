@@ -7,21 +7,34 @@ package ucf.assignments;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class TodoListTest {
 
-    @Test
-    void setName() {
-        //Create a list and set its name.
-        //compare output of listAsString to input.
-    }
+//        @Test
+//        void setName() {
+//            TodoList testList = new TodoList();
+//            testList.setName("hello");
+//            assertEquals("hello",testList.getName());
+//        }
 
     @Test
     void addItem() {
-        //Create a list and set its name.
-        //Add an item.
-        //compare output of listAsString to name and item.
+        TodoList testList = new TodoList();
+        testList.addItem("1");
+        testList.addItem("2");
+
+        ArrayList<TodoItem> check = testList.getList();
+        String result = "";
+        for(TodoItem item : check){
+            result += item.getName();
+        }
+
+
+        assertEquals("12",result);
     }
 
     @Test

@@ -6,18 +6,43 @@
 package ucf.assignments;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TodoList {
-    private static String name;
-    private static ArrayList<TodoItem> allItems;
+    //private static String name;
+    private static ArrayList<TodoItem> allItems = new ArrayList<TodoItem>();
 
+    /*
     public void setName(String newName){
-        //Update name.
+        name = newName;
+    }
+
+    public String getName(){
+        return name;
+    }
+    */
+    public ArrayList<TodoItem> getList(){
+        return allItems;
     }
 
     public void addItem(String itemName){
+        //TODO:
         //Make a new TodoItem of 'itemName' and add it to allItems.
+        //split based on commas to add the three different parts.
         //If it already exists do nothing.
+
+        //
+        allItems.add(new TodoItem(itemName));
+    }
+
+    public boolean doesNameExist(String name){
+        //Check all lists to see if a list of the same name is already present in the array.
+        for(TodoItem object : allItems){
+            if(name.equals(object.getName())){
+                return true;
+            }
+        }
+        return false;
     }
 
     public void removeItem(String itemName){

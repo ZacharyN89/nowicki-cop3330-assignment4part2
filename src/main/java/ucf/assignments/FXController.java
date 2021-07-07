@@ -8,12 +8,18 @@ package ucf.assignments;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 
 public class FXController {
+    //GUI attributes.
+    @FXML private ListView listArea;
+    @FXML private ListView itemArea;
+    @FXML private TextArea inputArea;
 
-    public void selectListButton(ActionEvent actionEvent) {
-        //Remember that list for manipulation.
-    }
+
+    private TodoList bigList = new TodoList();
+    private TodoItem curItem;
+
 
     public void selectItemButton(ActionEvent actionEvent) {
         //Make sure a list has been selected.
@@ -34,11 +40,18 @@ public class FXController {
             //Find the items from the TodoList object.
     }
 
+    /*
     public void removeListButton(ActionEvent actionEvent) {
-        //Make sure a list has been selected.
-            //Remove it from the ListAggregate.
+        //Remove the selected item from the list screen.
+        Object select = listArea.getSelectionModel().getSelectedItem();
+        listArea.getItems().remove(select);
+
+        //Remove it from the ListAggregate.
+        bigList.removeList((String)select);
+
         //Remove the text from the ListArea and all the items from the ItemArea.
-    }
+
+    }*/
 
     public void exportListButton(ActionEvent actionEvent) {
         //Make sure a list has been selected.
@@ -50,16 +63,19 @@ public class FXController {
         //Make sure an item has been selected.
     }
 
+    /*
     public void addListButton(ActionEvent actionEvent) {
-        //Make a list based of the name in the input text field.
-            //Add the list to the list aggregate and mark as incomplete.
-    }
+        //Get what is in the inputArea.
+        String in = inputArea.getText().replaceAll("\n","");
 
-    public void editListNameButton(ActionEvent actionEvent) {
-        //Make sure a list has been selected.
-            //Change name in listAggregate.
-        //Update text in ListArea.
-    }
+        //If the list is already there we want to do nothing.
+        if(!bigList.doesNameExist(in)){
+            //Add the list to the list aggregate.
+            bigList.addList(in);
+            //Update the listArea.
+            listArea.getItems().addAll(in);
+        }
+    }*/
 
     public void importSpecifiedListsButton(ActionEvent actionEvent) {
         //Look up all names of list separated by comma in the JSON file.
@@ -85,10 +101,6 @@ public class FXController {
         //Make sure a item has been selected.
             //Update an item with a date from the InputArea in the TodoList object.
         //Update ItemArea field.
-    }
-
-    public void exportAllListsButton(ActionEvent actionEvent) {
-        //Export all lists from ListAggregate to JSON file.
     }
 
     public void markItemCompleteButton(ActionEvent actionEvent) {

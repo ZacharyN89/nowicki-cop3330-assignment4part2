@@ -9,11 +9,20 @@ import java.util.ArrayList;
 
 public class TodoItem {
     private static String name;
+    private static String description;
     private static String date;
     private static boolean isComplete;
 
+    TodoItem(String newName){
+        this.name = newName;
+    }
+
     public void setName(String newName){
-        //Update name.
+        name = newName;
+    }
+
+    public String getName(){
+        return name;
     }
 
     public void setDate(String newDate){
