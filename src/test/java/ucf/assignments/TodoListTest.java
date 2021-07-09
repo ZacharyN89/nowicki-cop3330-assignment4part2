@@ -142,6 +142,30 @@ class TodoListTest {
     }
 
     @Test
+    void updateItem_check_date_2() {
+        //Add some items to a list.
+        TodoList testList = new TodoList();
+        LocalDate testDate = LocalDate.now();
+        LocalDate next = LocalDate.of(2000,01,01);
+        testList.addItem("1","", testDate, false);
+        testList.addItem("2","", next, false);
+
+        //Update item date.
+        LocalDate newDate = LocalDate.of(2001,02,12);
+        testList.updateItem("1","1","123",newDate, false);
+
+        //Concatenate the dates.
+        ArrayList<TodoItem> check = testList.getList();
+        String result = "";
+        for(TodoItem item : check){
+            result += item.getDate().toString();
+        }
+
+        //Test expected dates.
+        assertEquals("2001-02-122000-01-01",result);
+    }
+
+    @Test
     void updateItem_check_complete() {
         //Add some items to a list.
         TodoList testList = new TodoList();
@@ -158,7 +182,7 @@ class TodoListTest {
             boolCheck = item.getComplete();
         }
 
-        //Test expected complete value.
+        //Test expected complete.
         assertTrue(boolCheck);
     }
 

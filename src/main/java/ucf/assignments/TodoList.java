@@ -74,6 +74,16 @@ public class TodoList {
         }
     }
 
+    public TodoItem getItem(String searchName){
+        TodoItem result = null;
+        for(TodoItem object : allItems){
+            if(searchName.equals(object.getName())){
+                result = object;
+            }
+        }
+        return result;
+    }
+
     public boolean doesNameExist(String itemName){
         //Check all lists to see if a list of the same name is already present in the array.
         for(TodoItem object : allItems){
