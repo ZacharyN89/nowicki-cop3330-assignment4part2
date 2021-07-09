@@ -5,40 +5,57 @@
 
 package ucf.assignments;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
 public class TodoList {
-    //private static String name;
-    private static ArrayList<TodoItem> allItems = new ArrayList<TodoItem>();
+    private ArrayList<TodoItem> allItems = new ArrayList<TodoItem>();
 
-    /*
-    public void setName(String newName){
-        name = newName;
-    }
-
-    public String getName(){
-        return name;
-    }
-    */
     public ArrayList<TodoItem> getList(){
         return allItems;
     }
 
-    public void addItem(String itemName){
-        //TODO:
-        //Make a new TodoItem of 'itemName' and add it to allItems.
-        //split based on commas to add the three different parts.
+    public boolean addItem(String itemName, String description, LocalDate date){
+        //Make a new TodoItem and add it to allItems.
+        //This function returns whether it was successfully able to add an item. It won't add the item if one of the fields is filled out wrong.
         //If it already exists do nothing.
+        if(!doesNameExist(itemName)){
+            TodoItem itemToAdd = new TodoItem();
 
-        //
-        allItems.add(new TodoItem(itemName));
+            //Check valid name.
+            if(itemName.isBlank()){
+                return false;
+            }
+            itemToAdd.setName(itemName);
+
+            //Check valid description.
+            if(!isDescriptionValid(description)){
+                return false;
+            }
+            itemToAdd.setDescription(description);
+
+            itemToAdd.setDate(date);
+
+            allItems.add(itemToAdd);
+            return true;
+        }
+        return false;
     }
 
-    public boolean doesNameExist(String name){
-        //Check all lists to see if a list of the same name is already present in the array.
+    public boolean updateItem(String itemName, String newName, String description, LocalDate date){
+        //This function returns whether it was successfully able to update an item. It won't add the item if one of the fields is filled out wrong.
+        //Only update an existing item.
         for(TodoItem object : allItems){
-            if(name.equals(object.getName())){
+            if(object.getName().equals(itemName)) {
+                //Check valid name and description.
+                if (newName.isBlank() || !isDescriptionValid(description)) {
+                    return false;
+                }
+
+                object.setName(newName);
+                object.setDescription(description);
+                object.setDate(date);
+
                 return true;
             }
         }
@@ -47,7 +64,29 @@ public class TodoList {
 
     public void removeItem(String itemName){
         //Loop through allItems to find TodoItem 'itemName'.
-            //Delete it.
+        for(TodoItem object : allItems){
+            if(itemName.equals(object.getName())){
+                //Delete it.
+                allItems.remove(object);
+            }
+        }
+    }
+
+    public boolean doesNameExist(String itemName){
+        //Check all lists to see if a list of the same name is already present in the array.
+        for(TodoItem object : allItems){
+            if(itemName.equals(object.getName())){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isDescriptionValid(String description){
+        if(description.length() > 256){
+            return false;
+        }
+        return true;
     }
 
     public String listAsString(){

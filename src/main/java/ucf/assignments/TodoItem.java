@@ -5,17 +5,13 @@
 
 package ucf.assignments;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
 
 public class TodoItem {
-    private static String name;
-    private static String description;
-    private static String date;
-    private static boolean isComplete;
-
-    TodoItem(String newName){
-        this.name = newName;
-    }
+    private String name;
+    private String description;
+    private LocalDate date;
+    private boolean isComplete;
 
     public void setName(String newName){
         name = newName;
@@ -25,9 +21,20 @@ public class TodoItem {
         return name;
     }
 
-    public void setDate(String newDate){
-        //Update date.
-        //Update isComplete.
+    public void setDate(LocalDate newDate){
+        date = newDate;
+    }
+
+    public LocalDate getDate(){
+        return date;
+    }
+
+    public void setDescription(String newDescription) {
+        description = newDescription;
+    }
+
+    public String getDescription(){
+        return description;
     }
 
     public void setCompleteFlag(boolean flag){
@@ -43,5 +50,4 @@ public class TodoItem {
         //If isComplete is true return the item and date as a string.
         return  "";
     }
-
 }
