@@ -9,13 +9,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class TodoList {
-    private ArrayList<TodoItem> allItems = new ArrayList<TodoItem>();
+    private ArrayList<TodoItem> allItems = new ArrayList<>();
 
     public ArrayList<TodoItem> getList(){
         return allItems;
     }
 
-    public boolean addItem(String itemName, String description, LocalDate date){
+    public boolean addItem(String itemName, String description, LocalDate date, boolean complete){
         //Make a new TodoItem and add it to allItems.
         //This function returns whether it was successfully able to add an item. It won't add the item if one of the fields is filled out wrong.
         //If it already exists do nothing.
@@ -35,6 +35,7 @@ public class TodoList {
             itemToAdd.setDescription(description);
 
             itemToAdd.setDate(date);
+            itemToAdd.setComplete(complete);
 
             allItems.add(itemToAdd);
             return true;
@@ -42,8 +43,8 @@ public class TodoList {
         return false;
     }
 
-    public boolean updateItem(String itemName, String newName, String description, LocalDate date){
-        //This function returns whether it was successfully able to update an item. It won't add the item if one of the fields is filled out wrong.
+    public boolean updateItem(String itemName, String newName, String description, LocalDate date, boolean complete){
+        //This function returns whether it was successfully able to update an item. It won't update the item if one of the fields is filled out wrong.
         //Only update an existing item.
         for(TodoItem object : allItems){
             if(object.getName().equals(itemName)) {
@@ -55,6 +56,7 @@ public class TodoList {
                 object.setName(newName);
                 object.setDescription(description);
                 object.setDate(date);
+                object.setComplete(complete);
 
                 return true;
             }
@@ -83,10 +85,7 @@ public class TodoList {
     }
 
     public boolean isDescriptionValid(String description){
-        if(description.length() > 256){
-            return false;
-        }
-        return true;
+        return description.length() <= 256;
     }
 
     public String listAsString(){

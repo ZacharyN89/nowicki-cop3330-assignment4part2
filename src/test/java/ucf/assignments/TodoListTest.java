@@ -20,8 +20,8 @@ class TodoListTest {
         //Add some items to a list.
         TodoList testList = new TodoList();
         LocalDate testDate = LocalDate.now();
-        testList.addItem("1","", testDate);
-        testList.addItem("2","", testDate);
+        testList.addItem("1","", testDate, false);
+        testList.addItem("2","", testDate, false);
 
         //Concatenate the names.
         ArrayList<TodoItem> check = testList.getList();
@@ -40,8 +40,8 @@ class TodoListTest {
         TodoList testList = new TodoList();
         LocalDate testDate = LocalDate.now();
         //This item has a blank name and should not add to list.
-        testList.addItem("","", testDate);
-        testList.addItem("2","", testDate);
+        testList.addItem("","", testDate, false);
+        testList.addItem("2","", testDate, false);
 
         //Concatenate the names.
         ArrayList<TodoItem> check = testList.getList();
@@ -61,8 +61,8 @@ class TodoListTest {
         LocalDate testDate = LocalDate.now();
         String space257 = new String(new char[257]).replace("\0"," ");
         //This item has a description that is too long and should not add to the list.
-        testList.addItem("1",space257, testDate);
-        testList.addItem("2","", testDate);
+        testList.addItem("1",space257, testDate, false);
+        testList.addItem("2","", testDate, false);
 
         //Concatenate the names.
         ArrayList<TodoItem> check = testList.getList();
@@ -80,11 +80,11 @@ class TodoListTest {
         //Add some items to a list.
         TodoList testList = new TodoList();
         LocalDate testDate = LocalDate.now();
-        testList.addItem("1","", testDate);
-        testList.addItem("2","", testDate);
+        testList.addItem("1","", testDate, false);
+        testList.addItem("2","", testDate, false);
 
         //Update item name.
-        testList.updateItem("1","3","",testDate);
+        testList.updateItem("1","3","",testDate, false);
 
         //Concatenate the names.
         ArrayList<TodoItem> check = testList.getList();
@@ -102,11 +102,11 @@ class TodoListTest {
         //Add some items to a list.
         TodoList testList = new TodoList();
         LocalDate testDate = LocalDate.now();
-        testList.addItem("1","", testDate);
-        testList.addItem("2","", testDate);
+        testList.addItem("1","", testDate, false);
+        testList.addItem("2","", testDate, false);
 
         //Update item description.
-        testList.updateItem("1","1","123",testDate);
+        testList.updateItem("1","1","123",testDate, false);
 
         //Concatenate the descriptions.
         ArrayList<TodoItem> check = testList.getList();
@@ -124,11 +124,11 @@ class TodoListTest {
         //Add some items to a list.
         TodoList testList = new TodoList();
         LocalDate testDate = LocalDate.now();
-        testList.addItem("1","", testDate);
+        testList.addItem("1","", testDate, false);
 
         //Update item date.
         LocalDate newDate = LocalDate.of(2001,02,12);
-        testList.updateItem("1","1","123",newDate);
+        testList.updateItem("1","1","123",newDate, false);
 
         //Concatenate the dates.
         ArrayList<TodoItem> check = testList.getList();
@@ -142,15 +142,36 @@ class TodoListTest {
     }
 
     @Test
+    void updateItem_check_complete() {
+        //Add some items to a list.
+        TodoList testList = new TodoList();
+        LocalDate testDate = LocalDate.now();
+        testList.addItem("1","", testDate, false);
+
+        //Update item complete.
+        testList.updateItem("1","1","123",testDate, true);
+
+        //Grab the complete value.
+        ArrayList<TodoItem> check = testList.getList();
+        boolean boolCheck = false;
+        for(TodoItem item : check){
+            boolCheck = item.getComplete();
+        }
+
+        //Test expected complete value.
+        assertTrue(boolCheck);
+    }
+
+    @Test
     void updateItem_bad_name() {
         //Add some items to a list.
         TodoList testList = new TodoList();
         LocalDate testDate = LocalDate.now();
-        testList.addItem("1","", testDate);
-        testList.addItem("2","", testDate);
+        testList.addItem("1","", testDate, false);
+        testList.addItem("2","", testDate, false);
 
         //Update item name. (This is a bad name and should result in a failed update)
-        testList.updateItem("1","","",testDate);
+        testList.updateItem("1","","",testDate, false);
 
         //Concatenate the names.
         ArrayList<TodoItem> check = testList.getList();
@@ -169,11 +190,11 @@ class TodoListTest {
         TodoList testList = new TodoList();
         LocalDate testDate = LocalDate.now();
         String space257 = new String(new char[257]).replace("\0"," ");
-        testList.addItem("1","", testDate);
-        testList.addItem("2","321", testDate);
+        testList.addItem("1","", testDate, false);
+        testList.addItem("2","321", testDate, false);
 
         //Update item description. (This is a bad description and should result in a failed update)
-        testList.updateItem("1","3",space257,testDate);
+        testList.updateItem("1","3",space257,testDate, false);
 
         //Concatenate the descriptions.
         ArrayList<TodoItem> check = testList.getList();
@@ -191,8 +212,8 @@ class TodoListTest {
         //Add some items to a list.
         TodoList testList = new TodoList();
         LocalDate testDate = LocalDate.now();
-        testList.addItem("1","", testDate);
-        testList.addItem("2","", testDate);
+        testList.addItem("1","", testDate, false);
+        testList.addItem("2","", testDate, false);
 
         assertTrue(testList.doesNameExist("1"));
     }
@@ -202,8 +223,8 @@ class TodoListTest {
         //Add some items to a list.
         TodoList testList = new TodoList();
         LocalDate testDate = LocalDate.now();
-        testList.addItem("1","", testDate);
-        testList.addItem("2","", testDate);
+        testList.addItem("1","", testDate, false);
+        testList.addItem("2","", testDate, false);
 
         assertFalse(testList.doesNameExist("3"));
     }
@@ -213,8 +234,8 @@ class TodoListTest {
         //Add some items to a list.
         TodoList testList = new TodoList();
         LocalDate testDate = LocalDate.now();
-        testList.addItem("1","", testDate);
-        testList.addItem("2","", testDate);
+        testList.addItem("1","", testDate, false);
+        testList.addItem("2","", testDate, false);
 
         //Remove the item.
         testList.removeItem("1");
