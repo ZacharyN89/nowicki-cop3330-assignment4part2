@@ -7,66 +7,56 @@ class ListController{
 }
 
 class FXController{
-    +selectListButton()
     +selectItemButton()
     +displayIncompleteListButton()
     +displayCompleteItemsButton()
-    +markListCompleteButton()
     +DisplayListItemsButton()
+    +displayList()
+    +clear()
     +removeListButton()
-    +exportListButton()
-    +removeItemButton()
-    +addListButton()
-    +editListNameButton()
-    +importSpecifiedListsButton()
     +addItemButton()
-    +editItemNameButton()
-    +editItemDateButton()
-    +exportAllListsButton()
-}
-
-class ListAggregate{
-    -ArrayList<TodoList> allLists
-
-    +addList()
-    +removeList()
-    +getLists()
-    +getListItems()
-    +getCompleteItems()
-    +exportList()
-    +exportAllLists()
-    +loadList()
-    +loadAllLists()
+    +itemUpdateButton()
+    +clearSelectionButton()
+    +exportListButton()
+    +importListButton()
 }
 
 class TodoList{
-    -String name
     -ArrayList<TodoItem> allItems
 
-    +setName()
+    +getList()
     +addItem()
+    +updateItem()
     +removeItem()
-    +listAsString()
-    +completeItemsAsString()
+    +getItem()
+    +doesNameExist()
+    +clearListItems()
+    +isDescriptionValid()
+    +outputList()
+    +importList()
 }
 
 class Item{
     -String name
+    -String description
+    -LocalDate date
     -Boolean isComplete
 
     +setName()
+    +getName()
+    +setDescription()
+    +getDescription()
     +setDate()
-    +setCompleteFlag()
-    +get()
-    +getIfComplete()
+    +getDate()
+    +setComplete()
+    +getComplete()
 }
 
 
 
 
 javafx.Application <|-- ListController
-ListController o-- ListAggregate
 ListController o- FXController
 TodoList *-- Item
-ListAggregate o- TodoList
+FXController o- TodoList
 @enduml

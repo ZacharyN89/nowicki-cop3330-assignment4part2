@@ -5,6 +5,7 @@
 
 package ucf.assignments;
 
+import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -84,6 +85,10 @@ public class TodoList {
         return result;
     }
 
+    public void clearItems(){
+        allItems.clear();
+    }
+
     public boolean doesNameExist(String itemName){
         //Check all lists to see if a list of the same name is already present in the array.
         for(TodoItem object : allItems){
@@ -98,21 +103,71 @@ public class TodoList {
         return description.length() <= 256;
     }
 
-    public String listAsString(){
-        //Return a string that is all the items separated by a space with the name of the list at the start.
+    public void outputList(String filePath){
+        try{
+            File file = new File(filePath);
+            FileWriter fw = new FileWriter(file);
+            PrintWriter printLine = new PrintWriter(fw);
 
-        //Add the list name to a return string.
-        //Add each TodoItem in allItems to the return String.
-        //return the string
-        return "";
+            //ArrayList<TodoItem> outputList = bigList.getList();
+            for(TodoItem object : allItems) {
+                String name = object.getName();
+                String description = object.getDescription();
+                String date = object.getDate().toString();
+                String complete = "false";
+                if(object.getComplete()){complete = "true";}
+                printLine.printf("Item:%s " + "Description:%s " + "Date:%s " + "Complete:%s%n", name, description, date, complete);
+            }
+
+            printLine.close();
+        }catch(IOException e){
+
+        }
     }
 
-    public String completeItemsAsString(){
-        //Return a string that is all the complete items separated by a space with the name of the list at the start.
+    public void importList(String filePath){
+        //reset the list of items.
+        clearItems();
 
-        //Add the list name to a return string.
-        //Add each TodoItem in allItems to the return String if isComplete is true.
-        //return the string
-        return "";
+        try {
+            //File reader stuff.
+            FileReader fr = new FileReader(filePath);
+            BufferedReader br = new BufferedReader(fr);
+
+            //Read each line and add to items list.
+            String itemLine;
+            while((itemLine = br.readLine()) != null) {
+                TodoItem itemToAdd = new TodoItem();
+                String[] split = itemLine.split(" ");
+
+                //set name.
+                String[] splitName = split[0].split(":");
+                String name = splitName[1];
+
+                //set description.
+                String[] splitDescription = split[0].split(":");
+                String description = splitDescription[1];
+
+                //set date.
+                String[] splitDate = split[0].split(":");
+                String[] properDate = splitDate[1].split("-");
+                LocalDate date = LocalDate.of(Integer.parseInt(properDate[0]),Integer.parseInt(properDate[1]),Integer.parseInt(properDate[2]));
+
+                //set description.
+                String[] splitComplete = split[0].split(":");
+                boolean complete = false;
+                if(splitComplete[1].equals("true")) {
+                    complete = true;
+                }
+
+                //Add new item.
+                addItem(name,description,date,complete);
+            }
+
+            br.close();
+
+        }catch(Exception e){
+
+        }
     }
 }

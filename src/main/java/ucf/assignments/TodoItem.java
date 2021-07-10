@@ -48,9 +48,4 @@ public class TodoItem {
     public boolean getComplete(){
         return isComplete;
     }
-
-    public String getAsString(){
-        //Return the name and date formatted as a String with a space between them.
-        return  "";
-    }
 }

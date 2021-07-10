@@ -8,30 +8,19 @@ package ucf.assignments;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class FXController {
     //GUI attributes.
     @FXML private ListView itemArea;
-    @FXML private TextArea inputArea;
     @FXML private TextField nameArea;
     @FXML private TextField descriptionArea;
+    @FXML private TextField filePathArea;
     @FXML private DatePicker dateArea;
     @FXML private CheckBox completeArea;
-    @FXML private AnchorPane mainScreen;
 
 
     private TodoList bigList = new TodoList();
-    FileChooser fileChooser = new FileChooser();
     private TodoItem curItem;
 
 
@@ -146,69 +135,16 @@ public class FXController {
     }
 
     public void exportListButton(ActionEvent actionEvent) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Save List");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Text Files", "*.txt")
-        );
-
-        Stage stage = (Stage) mainScreen.getScene().getWindow();
-
-        File file = fileChooser.showSaveDialog(stage);
-        if(file != null){
-            try{
-                FileWriter write = new FileWriter(file, false);
-                PrintWriter printLine = new PrintWriter(write);
-
-                //ArrayList<TodoItem> outputList = bigList.getList();
-                for(TodoItem object : bigList.getList()) {
-                    String name = object.getName();
-                    String description = object.getDescription();
-                    String date = object.getDate().toString();
-                    String complete = "false";
-                    if(object.getComplete()){complete = "true";}
-                    printLine.printf("Item:%s " + "Description:%s " + "Date:%s " + "Complete:%s%n", name, description, date, complete);
-                }
-            }catch(Exception e){
-
-            }
-        }
+        bigList.outputList(filePathArea.getText());
     }
 
     public void importListButton(ActionEvent actionEvent) {
-        fileChooser.setTitle("Save List");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt")
-        );
-
-        Stage stage = (Stage) mainScreen.getScene().getWindow();
-
-        File file = fileChooser.showSaveDialog(stage);
-        if(file != null){
-            printToFile(file);
-        }
+        bigList.importList(filePathArea.getText());
+        displayList();
     }
 
-    public void printToFile(File file){
-        try{
-            FileWriter write = new FileWriter(file);
-            PrintWriter printLine = new PrintWriter(write);
-
-            printLine.println("List:");
-
-            //ArrayList<TodoItem> outputList = bigList.getList();
-            for(TodoItem object : bigList.getList()) {
-                String name = object.getName();
-                String description = object.getDescription();
-                String date = object.getDate().toString();
-                String complete = "false";
-                if(object.getComplete()){complete = "true";}
-                printLine.printf("Item:%s " + "Description:%s " + "Date:%s " + "Complete:%s%n", name, description, date, complete);
-            }
-
-            printLine.close();
-        }catch(IOException e){
-
-        }
+    public void clearListItemsButton(ActionEvent actionEvent) {
+        bigList.clearItems();
+        displayList();
     }
 }

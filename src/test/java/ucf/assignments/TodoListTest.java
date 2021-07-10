@@ -254,6 +254,27 @@ class TodoListTest {
     }
 
     @Test
+    void clearItems() {
+        //Add some items to a list.
+        TodoList testList = new TodoList();
+        LocalDate testDate = LocalDate.now();
+        testList.addItem("1","", testDate, false);
+        testList.addItem("2","", testDate, false);
+
+        //Remove the item.
+        testList.clearItems();
+
+        ArrayList<TodoItem> check = testList.getList();
+        String result = "";
+        for(TodoItem item : check){
+            result += item.getName();
+        }
+
+        //compare names of all items to expected names of items.
+        assertEquals("",result);
+    }
+
+    @Test
     void removeItem() {
         //Add some items to a list.
         TodoList testList = new TodoList();
@@ -292,20 +313,5 @@ class TodoListTest {
         TodoList testList = new TodoList();
         String space257 = new String(new char[257]).replace("\0"," ");
         assertFalse(testList.isDescriptionValid(space257));
-    }
-
-    @Test
-    void listAsString() {
-        //Create a list and set its name.
-        //Add some items
-        //compare output of listAsString to input and items.
-    }
-
-    @Test
-    void completeItemsAsString() {
-        //Create a list and set its name.
-        //Make complete items.
-        //Make incomplete items.
-        //compare output of listAsString to complete items input.
     }
 }
