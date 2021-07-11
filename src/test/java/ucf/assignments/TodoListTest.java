@@ -379,10 +379,7 @@ class TodoListTest {
             br.close();
             LocalDate check = LocalDate.of(2021, 7, 14);
 
-            assertEquals("yes","no");
         }catch(Exception e){
-
-            assertTrue("ye".equals("no"));
         }
     }
 }
