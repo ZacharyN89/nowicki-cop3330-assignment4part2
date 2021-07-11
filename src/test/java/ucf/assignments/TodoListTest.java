@@ -7,6 +7,9 @@ package ucf.assignments;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -313,5 +316,73 @@ class TodoListTest {
         TodoList testList = new TodoList();
         String space257 = new String(new char[257]).replace("\0"," ");
         assertFalse(testList.isDescriptionValid(space257));
+    }
+
+    @Test
+    void importList(){
+        try {
+            //File reader stuff.
+            File file = new File("C:/Users/zipfl/Desktop/Utility/me.txt");
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
+
+            //Read each line and add to items list.
+            TodoItem itemToAdd = new TodoItem();
+            //for(int i=0; i<2; i++) {
+                String itemLine = br.readLine();
+                itemLine = br.readLine();
+                String[] split = itemLine.split(" ");
+
+                //set name.
+                String[] splitName = split[0].split(":");
+                String name = splitName[1];
+
+                assertEquals("hi",splitName[1]);
+
+
+                //set description.
+                String[] splitDescription = split[1].split(":");
+                String description;
+                if(splitDescription.length == 1){
+                    description = "";
+                } else {
+                    description = splitDescription[1];
+                }
+
+                assertEquals("",description);
+
+                //set date.
+                String[] splitDate = split[2].split(":");
+                String[] properDate = splitDate[1].split("-");
+
+                assertEquals("2021",properDate[0]);
+
+
+                LocalDate date = LocalDate.of(Integer.parseInt(properDate[0]), Integer.parseInt(properDate[1]), Integer.parseInt(properDate[2]));
+
+
+                //set complete.
+                String[] splitComplete = split[3].split(":");
+                boolean complete = false;
+                if (splitComplete[1].equals("true")) {
+                    complete = true;
+                }
+
+
+                itemToAdd.setName(name);
+                itemToAdd.setDescription(description);
+                itemToAdd.setDate(date);
+                itemToAdd.setComplete(complete);
+
+            //}
+
+            br.close();
+            LocalDate check = LocalDate.of(2021, 7, 14);
+
+            assertEquals("yes","no");
+        }catch(Exception e){
+
+            assertTrue("ye".equals("no"));
+        }
     }
 }

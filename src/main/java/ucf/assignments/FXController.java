@@ -139,7 +139,10 @@ public class FXController {
     }
 
     public void importListButton(ActionEvent actionEvent) {
-        bigList.importList(filePathArea.getText());
+        clear();
+        String filePath = filePathArea.getText();
+        filePath.replaceAll("\\\\","/");
+        bigList.importList(filePath);
         displayList();
     }
 

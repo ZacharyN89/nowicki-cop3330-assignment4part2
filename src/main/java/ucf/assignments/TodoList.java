@@ -116,7 +116,7 @@ public class TodoList {
                 String date = object.getDate().toString();
                 String complete = "false";
                 if(object.getComplete()){complete = "true";}
-                printLine.printf("Item:%s " + "Description:%s " + "Date:%s " + "Complete:%s%n", name, description, date, complete);
+                printLine.printf("Item:%s~" + "Description:%s~" + "Date:%s~" + "Complete:%s%n", name, description, date, complete);
             }
 
             printLine.close();
@@ -131,30 +131,36 @@ public class TodoList {
 
         try {
             //File reader stuff.
-            FileReader fr = new FileReader(filePath);
+            File file = new File(filePath);
+            FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
 
             //Read each line and add to items list.
             String itemLine;
             while((itemLine = br.readLine()) != null) {
                 TodoItem itemToAdd = new TodoItem();
-                String[] split = itemLine.split(" ");
+                String[] split = itemLine.split("~");
 
                 //set name.
                 String[] splitName = split[0].split(":");
                 String name = splitName[1];
 
                 //set description.
-                String[] splitDescription = split[0].split(":");
-                String description = splitDescription[1];
+                String[] splitDescription = split[1].split(":");
+                String description;
+                if(splitDescription.length == 1){
+                    description = "";
+                } else {
+                    description = splitDescription[1];
+                }
 
                 //set date.
-                String[] splitDate = split[0].split(":");
+                String[] splitDate = split[2].split(":");
                 String[] properDate = splitDate[1].split("-");
                 LocalDate date = LocalDate.of(Integer.parseInt(properDate[0]),Integer.parseInt(properDate[1]),Integer.parseInt(properDate[2]));
 
                 //set description.
-                String[] splitComplete = split[0].split(":");
+                String[] splitComplete = split[3].split(":");
                 boolean complete = false;
                 if(splitComplete[1].equals("true")) {
                     complete = true;
